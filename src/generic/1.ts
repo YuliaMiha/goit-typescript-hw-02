@@ -3,15 +3,37 @@
   Доповніть цю функцію, використовуючи generics, щоб вона повертала правильний тип.
 */
 
-function getPromise () {
-  return new Promise((resolve) => {
-    resolve(['Text', 50]);
+// function getPromise () {
+//   return new Promise((resolve) => {
+//     resolve(['Text', 50]);
+//   });
+// }
+
+// getPromise()
+// .then((data) => {
+//   console.log(data);
+// });
+
+// export {};
+
+// Використовуйте generics для функції
+function getPromise<T>() {
+  return new Promise<T>((resolve) => {
+    resolve(['Text', 50] as T);
   });
 }
 
-getPromise()
-.then((data) => {
-  console.log(data);
-});
+// Вказати тип при виклику функції
+getPromise<[string, number]>()
+  .then((data) => {
+    console.log(data); // Тип даних тепер вірний: [string, number]
+  });
+
+// або
+
+getPromise<string[]>()
+  .then((data) => {
+    console.log(data); // Тип даних тепер вірний: string[]
+  });
 
 export {};
