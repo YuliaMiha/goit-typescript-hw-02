@@ -16,24 +16,15 @@
 
 // export {};
 
-// Використовуйте generics для функції
-function getPromise<T>() {
-  return new Promise<T>((resolve) => {
+function getPromise<T extends [string, number]>(): Promise<T> {
+  return new Promise((resolve) => {
     resolve(['Text', 50] as T);
   });
 }
 
-// Вказати тип при виклику функції
-getPromise<[string, number]>()
+getPromise()
   .then((data) => {
-    console.log(data); // Тип даних тепер вірний: [string, number]
-  });
-
-// або
-
-getPromise<string[]>()
-  .then((data) => {
-    console.log(data); // Тип даних тепер вірний: string[]
+    console.log(data); // data має тип [string, number]
   });
 
 export {};
